@@ -12,14 +12,19 @@ class Feed {
     @observable selectedFeed = []
 
     fetchFeed() {
+      let self = this
       this.isLoading = true
       this.facebook.fetchFeed()
         .then(res => {
-          this.feed = res.data
-          console.log(res.data)
-        })
-        .finally(() => {
-          this.isLoading = false
+          let db = Firebase.getDB()
+          let feedRef = db.collection('Feed')
+          feedRef.get()
+            .then(snapshot => {
+              let existingIds = []
+              snapshot.forEach(doc => existingIds.push(doc.data().id))
+              self.feed = _.filter(res.data, (data) => existingIds.indexOf(data.id) < 0)
+              this.isLoading = false
+            })
         })
     }
 
@@ -35,7 +40,14 @@ class Feed {
     }
 
     createBody(description = '') {
-      return _.filter(_.map(description.split('\n'), line => ({ type: 'text', 'value': line})), line => line.value.trim() != '')
+      return {
+        location: {
+          lat: 13.747343,
+          long: 100.539621,
+          name: 'Centara Grand and Bangkok Convention Centre'
+        },
+        contents: _.filter(_.map(description.split('\n'), line => ({ type: 'text', 'value': line})), line => line.value.trim() != '')
+      }
     }
 
     createGallery(attachments = { data: [] }) {
@@ -56,7 +68,8 @@ class Feed {
         gallery: this.createGallery(feed.attachments),
         cover_image_url: feed.full_picture || null,
         title: feed.name || null,
-        author: toJS(stores.account.account)
+        author: toJS(stores.account.account),
+        id: feed.id
       }))
     }
 
@@ -67,6 +80,10 @@ class Feed {
         let feedRef = db.collection('Feed').doc()
         await feedRef.set(article)
       })
+    }
+
+    clear() {
+      this.selectedFeed = []
     }
 }
 

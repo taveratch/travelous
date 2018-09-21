@@ -56,6 +56,7 @@ class Account {
         .then(snapshot => {
           if(snapshot.empty) {
             accountRef.doc().set({...this.account, ...{email: email}})
+            this.isRegistered = true
           }
         })
     }
