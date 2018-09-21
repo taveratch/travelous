@@ -1,3 +1,6 @@
+require('babel-core/register')
+require('babel-polyfill')
+
 import config from '../webpack.dev.config.js'
 import express from 'express'
 import nodeProxy from 'node-proxy-http'
@@ -36,6 +39,7 @@ if (!production) {
 
 app.use('/public', publicPath)
 app.use('/stylesheet', express.static(path.join(__dirname, '../stylesheet')))
+app.use('/assets', express.static(path.join(__dirname, '../assets')))
 app.use('/proxy', proxy)
 app.use('*', function (_, res) { res.sendFile(indexPath) })
 

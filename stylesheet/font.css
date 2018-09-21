@@ -1,0 +1,21 @@
+@font-face {
+    font-family: "My Font";
+    src: url(font/bold.ttf);
+    font-weight: bold
+}
+
+@font-face {
+    font-family: "My Font";
+    src: url(font/medium.ttf);
+    font-weight: normal
+}
+
+@font-face {
+    font-family: "My Font";
+    src: url(font/thin.ttf);
+    font-weight: 200
+}
+
+*, button, input {
+    font-family: "My Font";
+}

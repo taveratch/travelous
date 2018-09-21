@@ -1,9 +1,9 @@
-import Counter from 'stores/counter'
-import Posts from 'stores/posts'
+import Account from 'stores/account'
+import Feed from 'stores/feed'
 
 const stores = {}
 
-stores.counter = new Counter()
-stores.posts = new Posts()
+stores.feed = new Feed()
+stores.account = new Account()
 
 export default stores

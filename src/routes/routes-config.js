@@ -1,26 +1,15 @@
-import CounterPage from 'modules/counter/pages/CounterPage'
-import ParagraphPage from 'modules/paragraph/pages/ParagraphPage'
-import PostsPage from 'modules/posts/pages/PostsPage'
+import FeedPage from 'modules/Feed'
+import SignInPage from 'modules/authen/Signin'
 
 export default [
   {
-    path: '/posts',
-    label: 'Posts',
-    component: PostsPage
+    path: '/signin',
+    label: 'Signin',
+    component: SignInPage
   },
   {
-    path: '/counter',
-    label: 'Counter',
-    component: CounterPage
-  },
-  {
-    path: '/paragraph',
-    label: 'Paragraph',
-    component: ParagraphPage
-  },
-  {
-    path: '/',
-    label: 'Posts',
-    component: PostsPage
+    path: '/feed',
+    label: 'Feed',
+    component: FeedPage
   }
 ]
