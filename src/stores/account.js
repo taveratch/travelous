@@ -35,6 +35,7 @@ class Account {
         window.FB.getLoginStatus(res => {
           console.log(res)
           if(res.status == 'connected') {
+            localStorage.setItem('token', res.authResponse.accessToken)
             self.token = res.authResponse.accessToken
             self.fetchFBAccount().finally(() => {
               self.isLoading = false

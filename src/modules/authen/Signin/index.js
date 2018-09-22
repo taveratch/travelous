@@ -55,7 +55,6 @@ class SignIn extends React.Component {
 
   register = () => {
     let email = document.getElementById('email-input').value
-    console.log(email)
     this.accountStore.saveAccount(email)
   }
 
@@ -94,6 +93,7 @@ class SignIn extends React.Component {
         appId="293149538175061"
         autoLoad={true}
         fields="name,email,picture"
+        scope="user_posts,email,public_profile"
         callback={this.onLogin} />
     }
   }

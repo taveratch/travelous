@@ -6,13 +6,13 @@ const accessToken = 'EAAKdkVKATwQBAMZB5xPxClMy2nZCHzhKCX4aLRAP9FCZBU5uaBx0b3KS2U
 class Facebook {
 
   fetchFeed() {
-    let token = stores.account.token
+    let token = localStorage.getItem('token')
     const fields = ['name','full_picture','caption','comments','description','link','message','attachments']
     return Api.fetchFacebookFeed(token, fields)
   }
 
   fetchAccountInfo() {
-    let token = stores.account.token
+    let token = localStorage.getItem('token')
     const fields = ['picture','name']
     return Api.fetchFBAccountInfo(token, fields)
   }
