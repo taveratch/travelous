@@ -40,14 +40,14 @@ class Feed {
     }
 
     createBody(description = '') {
-      return {
+      return [{
         location: {
           lat: 13.747343,
           long: 100.539621,
           name: 'Centara Grand and Bangkok Convention Centre'
         },
         contents: _.filter(_.map(description.split('\n'), line => ({ type: 'text', 'value': line})), line => line.value.trim() != '')
-      }
+      }]
     }
 
     createGallery(attachments = { data: [] }) {
